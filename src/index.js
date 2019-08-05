@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { connect, Provider } from "react-redux";
-import { createStore, bindActionCreators  } from "redux";
+import { createStore, bindActionCreators } from "redux";
 
 const ADD_TASK = 'ADD_TASK';
 const DELETE_TASK = 'DELETE_TASK';
@@ -17,13 +17,16 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   console.log(state);
-  switch(action.type) {
+  switch (action.type) {
     case ADD_TASK:
       return {
         ...state,
-        tasks: [...state.tasks, action.name]
+        tasks: [
+          ...state.tasks,
+          action.task
+        ]
       }
-    case DELETE_TASK: 
+    case DELETE_TASK:
       return {
         ...state
       }
@@ -36,7 +39,7 @@ const store = createStore(rootReducer);
 const addTask = (newTask) => {
   return {
     type: ADD_TASK,
-    name: {
+    task: {
       name: newTask,
       id: 2
     }
@@ -49,47 +52,64 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps =  {
-    addTask
-}
+const mapDispatchToProps = (disaptch) => ({
+  addTask: (newTask) => disaptch(addTask(newTask))
+})
 
-  class App extends React.Component {
-    constructor(props){
-      super(props)
-      this.inputRef = React.createRef();
-    }
+// () => ({}) - упрощенное написание () => { return {} }
 
-    handleClick() {
-      this.props.addTask(this.inputRef.current.value);
-      this.inputRef.current.value = "";
-    }
-
-    render() {
-      return (
-          <div>
-            <div>
-              <input 
-                type="text" 
-                placeholder="Task"
-                ref={this.inputRef} 
-              />
-            </div>
-            <div>
-                <button onClick={this.handleClick.bind(this)}>Добавить</button>
-            </div>
-          </div>
-      );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef();
+    this.state = {
+      value: ''
     }
   }
 
-  const WrapApp = connect(mapStateToProps, mapDispatchToProps)(App);
-  
+  handleClick() {
+    this.props.addTask(this.state.value);
+    this.setState({ value: '' });
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Task"
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
+        </div>
+        <div>
+          <button onClick={this.handleClick.bind(this)}>Добавить</button>
+        </div>
+        <div>
+          {this.props.tasks.map((item) => (
+            <div>
+              {item.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+const WrapApp = connect(mapStateToProps, mapDispatchToProps)(App);
+
 let rerender = () => {
   ReactDOM.render(
-    <Provider store = {store}>
-        <WrapApp />
+    <Provider store={store}>
+      <WrapApp />
     </Provider>
-, document.getElementById('root'));
+    , document.getElementById('root'));
 }
 
 rerender();
