@@ -24,21 +24,17 @@ class AddTask extends React.Component {
 
   render() {
     return (
-      <div className={style.add_task}>
-        <div className="content">
-          <div className={style.add_task_wrap}>
-            <div className={style.add_task_btn}>
-              <img src={plus} onClick={this.handleClick.bind(this)} />
-            </div>
-            <div className={style.input_task}>
-              <input
-                type="text"
-                placeholder="Task"
-                value={this.state.value}
-                onChange={this.handleChange.bind(this)}
-              />
-            </div>
-          </div>
+      <div className={style.add_task_wrap}>
+        <div className={style.add_task_btn}>
+          <img src={plus} onClick={this.handleClick.bind(this)} />
+        </div>
+        <div className={style.input_task}>
+          <input
+            type="text"
+            placeholder="Task"
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
         </div>
       </div>
     );

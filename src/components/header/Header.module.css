@@ -3,10 +3,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: #f1daa7;
+    background: linear-gradient(90deg, rgba(159,159,19,1) 19%, rgba(204,37,41,1) 54%, rgba(7,130,9,1) 100%);
     padding-bottom: 10px;
     padding-top: 10px;
     border-radius: 10px 10px 0px 0px;
+    max-width: 400px;
+    margin: 0 auto;
     margin-top: 20px;
 }
 

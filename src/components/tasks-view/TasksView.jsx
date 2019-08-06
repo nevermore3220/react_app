@@ -1,35 +1,45 @@
 import React from "react";
 import style from "./TasksView.module.css";
-import curcle from "./../../images/circle-outline.png";
-import checked from "./../../images/checkbox-marked-circle-outline.png";
+import deleteBTN from "./../../images/delete.png";
 
 class TaskView extends React.Component {
-
   handleClick(itemID) {
     this.props.checkTask(itemID);
   }
 
+  handleClickDelete(itemID) {
+    this.props.deleteTask(itemID);
+  }
+
   render() {
     return (
-      <div className={style.tasks_view}>
-        <div className="content">
-          <div className={style.task}>
-            {this.props.tasks.map(item => (
-              <div className={style.task_content} 
+      <div className={style.task}>
+        {this.props.tasks.map(item => (
+          <div className={style.task_row_wrap}>
+            <div className={style.task_content}>
+              <input
+                type="checkbox"
+                className={style.checkbox}
+                id={item.id}
+                checked={item.completed}
+                onClick={() => {
+                  let itemID = item.id;
+                  this.handleClick(itemID);
+                }}
+              />
+              <label htmlFor={item.id}>{item.name}</label>
+            </div>
+            <div
+              className={style.delete_btn}
               onClick={() => {
                 let itemID = item.id;
-                this.handleClick(itemID);
-              }
-                }>
-                <img
-                  src={item.completed ? checked : curcle}
-                  alt=""
-                />
-                <span className={style.task_text}>{item.name}</span>
-              </div>
-            ))}
+                this.handleClickDelete(itemID);
+              }}
+            >
+              <img src={deleteBTN} alt="" />
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     );
   }
