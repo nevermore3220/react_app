@@ -11,10 +11,10 @@ export const addTask = (newTask, newID) => {
     }
   }
 
-  export const deleteTask = (isCompleted) => {
+  export const deleteTask = (taskID) => {
     return {
       type: DELETE_TASK,
-      completed: isCompleted
+      id: taskID
     }
   }
 
