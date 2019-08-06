@@ -1,0 +1,23 @@
+.delete_task_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1daa7;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 10px 10px 0px 0px;
+    margin-top: 20px;
+}
+
+.add_task_btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.todo_logo {
+    padding-left: 10px;
+}
