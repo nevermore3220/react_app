@@ -1,0 +1,40 @@
+.add_task_btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_task_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(159,159,19,1) 19%, rgba(204,37,41,1) 54%, rgba(7,130,9,1) 100%);
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 0px 0px 10px 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.add_task_btn {
+    margin-left: 10px;
+}
+
+.add_task_btn img{
+    cursor: pointer;
+}
+
+.input_task {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.input_task input {
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 30px;
+    width: 93%;
+}
